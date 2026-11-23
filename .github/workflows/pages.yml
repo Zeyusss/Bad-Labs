@@ -19,7 +19,8 @@ jobs:
         with:
           node-version: 22
       - run: npm ci || npm install --legacy-peer-deps
-      - run: sed -i 's|routeTree,|routeTree, basepath: "/${{ github.event.repository.name }}",|' src/router.tsx
+      - run: |
+          sed -i 's|routeTree,|routeTree, basepath: "/${{ github.event.repository.name }}",|' src/router.tsx
       - run: npx vite build --base=/${{ github.event.repository.name }}/
       - id: out
         run: |
